@@ -1,5 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 const Header = () => {
+
+    const { user, handleSignOut } = useContext(AuthContext)
+
     const links = <>
         <li><Link to={'/'}>Home</Link></li>
         <li><Link to={'/books'}>All Books</Link></li>
@@ -40,8 +45,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to={'/login'}>Login</Link>
-                    <div className="dropdown dropdown-end">
+                    {user ? <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                                 <img
@@ -59,9 +63,9 @@ const Header = () => {
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li><button onClick={handleSignOut}>Logout</button></li>
                         </ul>
-                    </div>
+                    </div> : <Link to={'/login'}>Login</Link>}
                 </div>
             </div>
         </div >

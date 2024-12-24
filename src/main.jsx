@@ -14,6 +14,7 @@ import AddBooks from './pages/AddBooks/AddBooks';
 import BorrowedBooks from './pages/BorrowedBooks/BorrowedBooks';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import AuthProviders from './providers/AuthProviders';
 
 const router = createBrowserRouter([
   {
@@ -26,23 +27,23 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path:'/books',
+        path: '/books',
         element: <Books></Books>
       },
       {
-        path:'/add-book',
+        path: '/add-book',
         element: <AddBooks></AddBooks>
       },
       {
-        path:'/borrowed-books',
+        path: '/borrowed-books',
         element: <BorrowedBooks></BorrowedBooks>
       },
       {
-        path:'/login',
+        path: '/login',
         element: <Login></Login>
       },
       {
-        path:'/register',
+        path: '/register',
         element: <Register></Register>
       }
     ]
@@ -51,6 +52,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProviders>
+      <RouterProvider router={router} />
+    </AuthProviders>
   </StrictMode>,
 )
