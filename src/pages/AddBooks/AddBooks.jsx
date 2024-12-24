@@ -1,10 +1,15 @@
+import axios from "axios";
 
 const AddBooks = () => {
     const addBook = e => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const initialData = Object.fromEntries(formData.entries())
-        console.log(initialData);
+
+        axios.post('http://localhost:5000/books', initialData)
+        .then(data => {
+            console.log(data.data)
+        })
     }
 
     return (
