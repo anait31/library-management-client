@@ -1,9 +1,10 @@
 import { FaBookBookmark } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 const Book = ({ book }) => {
-    const { bookname, authorname, bookimage, description, category, bookcontent, quantity } = book;
+    const { _id, bookname, authorname, bookimage, description, category, bookcontent, quantity } = book;
     return (
         <div>
-            <div className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+            <div className="w-full max-w-sm overflow-hidden bg-white flex flex-col rounded-lg shadow-lg dark:bg-gray-800">
                 <img className="object-cover object-center w-full h-56" src={bookimage} alt="avatar" />
                 <div className="flex items-center px-6 py-3 bg-gray-900">
                     <FaBookBookmark className="text-white"></FaBookBookmark>
@@ -17,6 +18,7 @@ const Book = ({ book }) => {
                             <path d="M14 11H10V13H14V11Z" /><path fillRule="evenodd" clipRule="evenodd" d="M7 5V4C7 2.89545 7.89539 2 9 2H15C16.1046 2 17 2.89545 17 4V5H20C21.6569 5 23 6.34314 23 8V18C23 19.6569 21.6569 21 20 21H4C2.34314 21 1 19.6569 1 18V8C1 6.34314 2.34314 5 4 5H7ZM9 4H15V5H9V4ZM4 7C3.44775 7 3 7.44769 3 8V14H21V8C21 7.44769 20.5522 7 20 7H4ZM3 18V16H21V18C21 18.5523 20.5522 19 20 19H4C3.44775 19 3 18.5523 3 18Z" />
                         </svg>
                         <h1 className="px-2 text-sm">Meraki UI</h1>
+                        <Link to={`/book-details/${_id}`}><button className="text-blue-500 underline ml-4">Book Details</button></Link>
                     </div>
                 </div>
             </div>
