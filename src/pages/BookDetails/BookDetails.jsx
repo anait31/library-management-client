@@ -3,12 +3,37 @@ import { useLoaderData } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../providers/AuthProviders";
+import axios from "axios";
 
 const BookDetails = () => {
     const book = useLoaderData();
     const [startDate, setStartDate] = useState(new Date());
+    const [startDates, setStartDates] = useState(new Date());
     const { user } = useContext(AuthContext);
     const { _id, bookname, authorname, bookimage, description, category, bookcontent, quantity } = book;
+
+    const handleBorrowedBook = e => {
+        e.preventDefault();
+
+        // const formData = new FormData(e.target);
+        // const initialData = Object.fromEntries(formData.entries())
+        // console.log(initialData)
+
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const borroweDdate = form.borroweddate.value;
+        const returnDate = form.returndate.value;
+        const job_id = _id
+        const borrowedData = {name, email, borroweDdate, returnDate, job_id}
+        console.log(borrowedData)
+
+        axios.post('http://localhost:5000/borrowed-books', borrowedData)
+        .then(data => {
+            console.log(data.data);
+        })
+    }
+
     return (
         <div className="">
             <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white mb-4">Book Details</h2>
@@ -34,23 +59,23 @@ const BookDetails = () => {
                 </div>
                 <div className="p-6 bg-white rounded-md shadow-md dark:bg-gray-800">
                     <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">User Details</h2>
-                    <form>
+                    <form onSubmit={handleBorrowedBook}>
                         <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                             <div>
                                 <label className="text-gray-700 dark:text-gray-200">User Name</label>
-                                <input id="username" disabled type="text" defaultValue={user?.displayName} className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                <input name="name" disabled type="text" defaultValue={user?.displayName} className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                             </div>
                             <div>
                                 <label className="text-gray-700 dark:text-gray-200">Email Address</label>
-                                <input id="emailAddress" disabled type="email" defaultValue={user?.email} className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                <input name="email" disabled type="email" defaultValue={user?.email} className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                             </div>
                             <div>
                                 <label className="text-gray-700 dark:text-gray-200">Borrowed Date</label>
-                                <DatePicker disabled className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" selected={startDate} onChange={(date) => setStartDate(date)} />
+                                <DatePicker name="borroweddate" disabled className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" selected={startDates} onChange={(date) => setStartDates(date)} />
                             </div>
                             <div className="">
                                 <label className="text-gray-700 dark:text-gray-200">Return Date</label>
-                                <DatePicker className="block px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" selected={startDate} onChange={(date) => setStartDate(date)} />
+                                <DatePicker name="returndate" className="block px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" selected={startDate} onChange={(date) => setStartDate(date)} />
                             </div>
                         </div>
                         <div className="flex justify-end mt-6">
