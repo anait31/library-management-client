@@ -16,6 +16,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import AuthProviders from './providers/AuthProviders';
 import BookDetails from './pages/BookDetails/BookDetails';
+import BooksCategories from './pages/BooksCategories/BooksCategories';
 
 const router = createBrowserRouter([
   {
@@ -28,14 +29,19 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path: '/books',
+        path: '/books/',
         element: <Books></Books>,
         loader: () => fetch('http://localhost:5000/books')
       },
       {
+        path:'/books/:categories',
+        element: <BooksCategories></BooksCategories>,
+        loader: ({params}) => fetch(`http://localhost:5000/books?category=${params.categories}`)
+      },
+      {
         path: '/book-details/:id',
         element: <BookDetails></BookDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/book/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/book/${params.id}`)
       },
       {
         path: '/add-books',

@@ -14,11 +14,6 @@ const BookDetails = () => {
 
     const handleBorrowedBook = e => {
         e.preventDefault();
-
-        // const formData = new FormData(e.target);
-        // const initialData = Object.fromEntries(formData.entries())
-        // console.log(initialData)
-
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
