@@ -4,7 +4,7 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const Categories = () => {
     return (
-        <div className="pt-12 pb-6">
+        <div className="py-12">
             <div className="text-center mb-6">
                 <h2 className="text-3xl font-semibold">Book Categories</h2>
                 <p className="mt-2">Book Categories refer to the various genres or classifications that help organize books based on <br /> their content, style, or target audience.</p>
