@@ -8,7 +8,18 @@ const BorrowedBooks = () => {
     useEffect(() => {
         axios.get(`http://localhost:5000/borrowed-books?email=${user?.email}`)
             .then(data => setMyBorrowerdBooks(data.data))
-    }, [user?.email])
+    }, [user?.email]);
+
+
+    const handleReturnBook = (id) => {
+        axios.delete(`http://localhost:5000/book/${id}`)
+        .then(data => {
+            console.log(data.data)
+            const reamainingBorrowedBooks = myBorrowerdBooks.filter(myRemainingBorrowerdBooks => myRemainingBorrowerdBooks._id !== id);
+            setMyBorrowerdBooks(reamainingBorrowedBooks);
+        })
+    }
+
     return (
         <div className="py-8">
             <section className="container mx-auto">
@@ -83,7 +94,7 @@ const BorrowedBooks = () => {
                                                         {/* <button className="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
                                                             Archive
                                                         </button> */}
-                                                        <button className="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
+                                                        <button onClick={() => handleReturnBook(myBorrowerdBook._id)} className="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
                                                             Return
                                                         </button>
                                                     </div>
