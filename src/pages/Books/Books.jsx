@@ -3,7 +3,6 @@ import Book from "../../components/Book/Book";
 
 const Books = () => {
     const books = useLoaderData()
-    console.log(books)
     return (
         <div className="grid grid-cols-4 gap-6">
             {

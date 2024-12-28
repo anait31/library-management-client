@@ -20,13 +20,20 @@ const BookDetails = () => {
         const borroweDdate = form.borroweddate.value;
         const returnDate = form.returndate.value;
         const job_id = _id
-        const borrowedData = {name, email, borroweDdate, returnDate, job_id}
+        const borrowedData = { name, email, borroweDdate, returnDate, job_id }
         console.log(borrowedData)
 
-        axios.post('http://localhost:5000/borrowed-books', borrowedData)
-        .then(data => {
-            console.log(data.data);
-        })
+        if (quantity > 0) {
+            axios.post('http://localhost:5000/borrowed-books', borrowedData)
+                .then(data => {
+                    console.log(data.data);
+                })
+        }
+        else {
+            console.log('Book not available')
+        }
+
+
     }
 
     return (
