@@ -6,8 +6,12 @@ const BorrowedBooks = () => {
     const { user } = useContext(AuthContext);
     const [myBorrowerdBooks, setMyBorrowerdBooks] = useState([])
     useEffect(() => {
-        axios.get(`http://localhost:5000/borrowed-books?email=${user?.email}`)
+        axios.get(`http://localhost:5000/borrowed-books?email=${user?.email}`, {
+            withCredentials: true
+        })
             .then(data => setMyBorrowerdBooks(data.data))
+
+
     }, [user?.email]);
 
 
