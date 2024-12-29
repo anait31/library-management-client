@@ -37,7 +37,7 @@ const BookDetails = () => {
     }
 
     return (
-        <div className="">
+        <div className="container mx-auto">
             <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white mb-4">Book Details</h2>
             <div className="flex items-center gap-8">
                 <div className="overflow-hidden md:w-2/3 bg-white rounded-lg shadow-md dark:bg-gray-800">
