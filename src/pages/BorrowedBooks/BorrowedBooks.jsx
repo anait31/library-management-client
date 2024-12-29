@@ -80,7 +80,7 @@ const BorrowedBooks = () => {
                                                     </div>
                                                 </td>
                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{myBorrowerdBook.bookname}</td>
-                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{myBorrowerdBook.bookimage}</td>
+                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap"><img className="h-8" src={myBorrowerdBook?.bookimage} alt="" /></td>
                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                     <div className="flex items-center gap-x-2">
                                                         <div>

@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 import ReactStars from "react-rating-stars-component";
+import { Navigate, useNavigate } from "react-router-dom";
 const AddBooks = () => {
 const [rating, setRating] = useState(0);
+const navigate = useNavigate()
     const ratingChanged = (newRating) => {
         setRating(newRating)
     }
+    console.log(rating)
     const addBook = e => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -13,7 +16,8 @@ const [rating, setRating] = useState(0);
         initialData.rating = rating
         axios.post('http://localhost:5000/books', initialData)
             .then(data => {
-
+                e.target.reset()
+                navigate('/books')
             })
     }
 
@@ -41,10 +45,10 @@ const [rating, setRating] = useState(0);
                         <label className="block text-sm text-gray-500 dark:text-gray-300">Category</label>
                         <select name="category" className="mt-2 block w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300">
                             <option defaultValue="Please Select Books Category">Please Select Books Category</option>
-                            <option value="Novel">Novel</option>
                             <option value="Thriller">Thriller</option>
                             <option value="History">History</option>
                             <option value="Drama">Drama</option>
+                            <option value="Comic">Comic</option>
                         </select>
                     </div>
                     <div>

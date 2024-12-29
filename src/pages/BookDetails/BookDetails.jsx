@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../providers/AuthProviders";
@@ -7,6 +7,7 @@ import axios from "axios";
 
 const BookDetails = () => {
     const book = useLoaderData();
+    const navigate = useNavigate()
     const [startDate, setStartDate] = useState(new Date());
     const [startDates, setStartDates] = useState(new Date());
     const { user } = useContext(AuthContext);
@@ -20,13 +21,13 @@ const BookDetails = () => {
         const borroweDdate = form.borroweddate.value;
         const returnDate = form.returndate.value;
         const job_id = _id
-        const borrowedData = { name, email, borroweDdate, returnDate, job_id }
+        const borrowedData = { name, email, borroweDdate, returnDate, job_id, bookimage, bookname, category, authorname }
         console.log(borrowedData)
 
         if (quantity > 0) {
             axios.post('http://localhost:5000/borrowed-books', borrowedData)
                 .then(data => {
-                    console.log(data.data);
+                    navigate('/borrowed-books')
                 })
         }
         else {
