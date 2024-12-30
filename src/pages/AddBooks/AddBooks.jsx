@@ -22,9 +22,10 @@ const navigate = useNavigate()
     }
 
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto px-4 md:px-0">
+            <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white mb-4">Add New Book</h2>
             <form onSubmit={addBook}>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="md:grid grid-cols-2 gap-4">
                     <div>
                         <label className="block text-sm text-gray-500 dark:text-gray-300">Book Name</label>
                         <input name="bookname" type="text" placeholder="Book Name" className="mt-2 block w-full placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300" />

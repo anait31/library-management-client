@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 const Book = ({ book }) => {
     const { _id, bookname, authorname, bookimage, description, category, rating, bookcontent, quantity } = book;
     return (
-        <div>
-            <div className="w-full max-w-sm overflow-hidden bg-white flex flex-col rounded-lg shadow-lg dark:bg-gray-800">
+        <div className="px-4 md:px-0 mb-4 md:mb-0">
+            <div className="w-full overflow-hidden bg-white flex flex-col rounded-lg shadow-lg dark:bg-gray-800">
                 <img className="object-cover object-center w-full h-56" src={bookimage} alt="avatar" />
                 <div className="flex items-center px-6 py-3 bg-gray-900">
                     <FaBookBookmark className="text-white"></FaBookBookmark>

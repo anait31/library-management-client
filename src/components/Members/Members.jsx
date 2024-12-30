@@ -8,9 +8,9 @@ import vicechair from '../../assets/vicechair.jpg'
 import chair from '../../assets/chair.jpg'
 const Members = () => {
     return (
-        <div>
+        <div className='px-4 md:px-0'>
             <h2 className='text-4xl mb-4 font-semibold'>Library Board Members</h2>
-            <div className='md:grid md:grid-cols-4 md:gap-8'>
+            <div className='md:grid md:grid-cols-4 md:gap-8 space-y-4 md:space-y-0'>
                 <div>
                     <img className='rounded-md' src={assistant} alt="" />
                     <h2 className='text-xl mt-2'>George Clark</h2>

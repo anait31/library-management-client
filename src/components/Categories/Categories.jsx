@@ -4,15 +4,15 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const Categories = () => {
     return (
-        <div className="py-12">
+        <div className="py-12 px-4 md:px-0">
             <div className="text-center mb-6">
                 <h2 className="text-3xl font-semibold">Book Categories</h2>
-                <p className="mt-2">Book Categories refer to the various genres or classifications that help organize books based on <br /> their content, style, or target audience.</p>
+                <p className="mt-2">Book Categories refer to the various genres or classifications that help organize books based on <br className="hidden md:block" /> their content, style, or target audience.</p>
             </div>
             <div className="md:flex md:gap-8">
-                <Link to={'/books/Thriller'}>
-                    <div className="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
-                        <div className="px-4 py-2">
+                <Link className="" to={'/books/Thriller'}>
+                    <div className="overflow-hidden mb-6 md:mb-0 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                        <div className="py-2">
                             <h1 className="text-xl font-bold text-gray-800 uppercase dark:text-white">Thriller BOOKS</h1>
                             <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi quos quidem sequi illum facere recusandae voluptatibus</p>
                         </div>
@@ -23,8 +23,8 @@ const Categories = () => {
                         </div>
                     </div>
                 </Link>
-                <Link to={'/books/History'}>
-                    <div className="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                <Link className="" to={'/books/History'}>
+                    <div className="overflow-hidden mb-6 md:mb-0 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                         <div className="px-4 py-2">
                             <h1 className="text-xl font-bold text-gray-800 uppercase dark:text-white">History Books</h1>
                             <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi quos quidem sequi illum facere recusandae voluptatibus</p>
@@ -36,8 +36,8 @@ const Categories = () => {
                         </div>
                     </div>
                 </Link>
-                <Link to={'/books/Drama'}>
-                    <div className="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                <Link className="" to={'/books/Drama'}>
+                    <div className="overflow-hidden mb-6 md:mb-0 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                         <div className="px-4 py-2">
                             <h1 className="text-xl font-bold text-gray-800 uppercase dark:text-white">Drama Books</h1>
                             <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi quos quidem sequi illum facere recusandae voluptatibus</p>
@@ -49,7 +49,7 @@ const Categories = () => {
                         </div>
                     </div>
                 </Link>
-                <Link to={'/books/Comic'}>
+                <Link className="" to={'/books/Comic'}>
                     <div className="overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
                         <div className="px-4 py-2">
                             <h1 className="text-xl font-bold text-gray-800 uppercase dark:text-white">Comic Books</h1>
