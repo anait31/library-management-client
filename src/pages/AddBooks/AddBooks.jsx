@@ -14,7 +14,7 @@ const navigate = useNavigate()
         const formData = new FormData(e.target);
         const initialData = Object.fromEntries(formData.entries())
         initialData.rating = rating
-        axios.post('http://localhost:5000/books', initialData)
+        axios.post('https://b10a11-server-side-anait31.vercel.app/books', initialData)
             .then(data => {
                 e.target.reset()
                 navigate('/books')

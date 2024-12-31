@@ -2,7 +2,6 @@ import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from
 import { createContext, useState } from "react";
 import auth from "../firebase/firebase.config";
 import { useEffect } from "react";
-import { use } from "react";
 import axios from "axios";
 
 export const AuthContext = createContext(null)
@@ -10,7 +9,6 @@ export const AuthContext = createContext(null)
 const AuthProviders = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    console.log(user)
     
     const googleProvider = new GoogleAuthProvider()
     const handleGoogleSignInWithPopup = () => {
@@ -27,16 +25,14 @@ const AuthProviders = ({ children }) => {
             setUser(currentUser);
             if(currentUser?.email) {
                 const user = {email: currentUser.email};
-                axios.post('http://localhost:5000/jwt', user, {withCredentials: true})
+                axios.post('https://b10a11-server-side-anait31.vercel.app/jwt', user, {withCredentials: true})
                 .then(data => {
-                    console.log(data.data)
                     setIsLoading(false)
                 })
             }
             else {
-                axios.post('http://localhost:5000/logout', {}, {withCredentials: true})
+                axios.get('https://b10a11-server-side-anait31.vercel.app/logout', {withCredentials: true})
                 .then(data => {
-                    console.log('Logout', data.data)
                     setIsLoading(false)
                 })
             }

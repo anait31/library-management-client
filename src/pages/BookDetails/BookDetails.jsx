@@ -25,7 +25,7 @@ const BookDetails = () => {
         console.log(borrowedData)
 
         if (quantity > 0) {
-            axios.post('http://localhost:5000/borrowed-books', borrowedData)
+            axios.post('https://b10a11-server-side-anait31.vercel.app/borrowed-books', borrowedData)
                 .then(data => {
                     navigate('/borrowed-books')
                 })

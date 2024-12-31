@@ -32,17 +32,17 @@ const router = createBrowserRouter([
       {
         path: '/books/',
         element: <PrivateRoutes><Books></Books></PrivateRoutes>,
-        loader: () => fetch('http://localhost:5000/books')
+        loader: () => fetch('https://b10a11-server-side-anait31.vercel.app/books')
       },
       {
         path:'/books/:categories',
         element: <BooksCategories></BooksCategories>,
-        loader: ({params}) => fetch(`http://localhost:5000/books?category=${params.categories}`)
+        loader: ({params}) => fetch(`https://b10a11-server-side-anait31.vercel.app/books?category=${params.categories}`)
       },
       {
         path: '/book-details/:id',
         element: <PrivateRoutes><BookDetails></BookDetails></PrivateRoutes>,
-        loader: ({ params }) => fetch(`http://localhost:5000/book/${params.id}`)
+        loader: ({ params }) => fetch(`https://b10a11-server-side-anait31.vercel.app/book/${params.id}`)
       },
       {
         path: '/add-books',

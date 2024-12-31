@@ -6,7 +6,7 @@ const BorrowedBooks = () => {
     const { user } = useContext(AuthContext);
     const [myBorrowerdBooks, setMyBorrowerdBooks] = useState([])
     useEffect(() => {
-        axios.get(`http://localhost:5000/borrowed-books?email=${user?.email}`, {
+        axios.get(`https://b10a11-server-side-anait31.vercel.app/borrowed-books?email=${user?.email}`, {
             withCredentials: true
         })
             .then(data => setMyBorrowerdBooks(data.data))
@@ -16,7 +16,7 @@ const BorrowedBooks = () => {
 
 
     const handleReturnBook = (id) => {
-        axios.delete(`http://localhost:5000/book/${id}`)
+        axios.delete(`https://b10a11-server-side-anait31.vercel.app/book/${id}`)
         .then(data => {
             console.log(data.data)
             const reamainingBorrowedBooks = myBorrowerdBooks.filter(myRemainingBorrowerdBooks => myRemainingBorrowerdBooks._id !== id);
