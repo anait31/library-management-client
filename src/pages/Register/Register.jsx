@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 import { updateProfile } from "firebase/auth";
 import auth from "../../providers/AuthProviders";
+import { Helmet } from "react-helmet";
 const Register = () => {
 
     const { handleRegisterButton } = useContext(AuthContext);
@@ -37,6 +38,9 @@ const Register = () => {
 
     return (
         <div className="py-12">
+            <Helmet>
+                <title>LMT - Register</title>
+            </Helmet>
             <section className="bg-white dark:bg-gray-900">
                 <div className="container flex items-center justify-center mx-auto">
                     <form onSubmit={handleSignUpForm} className="w-full max-w-md">

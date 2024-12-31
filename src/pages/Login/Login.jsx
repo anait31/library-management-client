@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import { Helmet } from "react-helmet";
 const Login = () => {
     const { handleGoogleSignInWithPopup, signInUser } = useContext(AuthContext);
     const navigate = useNavigate()
@@ -26,12 +27,15 @@ const Login = () => {
             navigate(location.state ? location.state : '/')
         })
         .catch(() => {
-            
+
         })
     }
 
     return (
         <div className="py-12">
+            <Helmet>
+                <title>LMT - Login</title>
+            </Helmet>
             <div className="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800 ">
                 <div className="flex items-center justify-center mt-6">
                     <a href="#" className="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400 dark:text-white">

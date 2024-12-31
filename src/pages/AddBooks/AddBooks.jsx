@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import ReactStars from "react-rating-stars-component";
 import { Navigate, useNavigate } from "react-router-dom";
 const AddBooks = () => {
@@ -23,6 +24,9 @@ const navigate = useNavigate()
 
     return (
         <div className="container mx-auto px-4 md:px-0">
+            <Helmet>
+                <title>LMT - Add Books</title>
+            </Helmet>
             <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white mb-4">Add New Book</h2>
             <form onSubmit={addBook}>
                 <div className="md:grid grid-cols-2 gap-4">

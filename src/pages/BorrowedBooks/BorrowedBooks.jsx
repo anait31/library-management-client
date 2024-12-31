@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const BorrowedBooks = () => {
     const { user } = useContext(AuthContext);
@@ -26,6 +27,9 @@ const BorrowedBooks = () => {
 
     return (
         <div className="py-8 px-4 md:px-0">
+            <Helmet>
+                <title>LMT - Borrowed Books</title>
+            </Helmet>
             <section className="container mx-auto">
                 <div className="flex flex-col">
                     <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
