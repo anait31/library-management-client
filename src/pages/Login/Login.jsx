@@ -1,31 +1,47 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 const Login = () => {
-    const { handleGoogleSignInWithPopup } = useContext(AuthContext);
+    const { handleGoogleSignInWithPopup, signInUser } = useContext(AuthContext);
     const navigate = useNavigate()
+    const location = useLocation();
 
     const handleGoogleSignIn = () => {
         handleGoogleSignInWithPopup()
             .then(() => {
-                navigate('/')
+                navigate(location.state ? location.state : '/')
             })
             .catch(error => {
                 console.log(error.message);
             })
     }
 
+    const handleLogin = (e) => {
+        e.preventDefault()
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        signInUser(email, password)
+        .then(() => {
+            navigate(location.state ? location.state : '/')
+        })
+        .catch(() => {
+            
+        })
+    }
+
     return (
         <div className="py-12">
             <div className="w-full max-w-sm p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800 ">
-                <div className="flex justify-center mx-auto">
-                    <img className="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt="" />
+                <div className="flex items-center justify-center mt-6">
+                    <a href="#" className="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400 dark:text-white">
+                        sign In
+                    </a>
                 </div>
-
-                <form className="mt-6">
+                <form onSubmit={handleLogin} className="mt-6">
                     <div>
-                        <label className="block text-sm text-gray-800 dark:text-gray-200">Username</label>
-                        <input type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <label className="block text-sm text-gray-800 dark:text-gray-200">Email</label>
+                        <input name="email" type="email" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
 
                     <div className="mt-4">
@@ -34,7 +50,7 @@ const Login = () => {
                             <a href="#" className="text-xs text-gray-600 dark:text-gray-400 hover:underline">Forget Password?</a>
                         </div>
 
-                        <input type="password" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <input name="password" type="password" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
 
                     <div className="mt-6">

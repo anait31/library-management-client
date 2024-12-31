@@ -1,13 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
+import { updateProfile } from "firebase/auth";
+import auth from "../../providers/AuthProviders";
 const Register = () => {
+
+    const { handleRegisterButton } = useContext(AuthContext);
+    const navigate = useNavigate()
+    const location = useLocation();
+
 
     const handleSignUpForm = e => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
-        const photoURL = form.photo.value;
+        const photo = form.photo.value;
         const password = form.password.value;
+        handleRegisterButton(email, password)
+            .then((currentUser) => {
+                updateProfile(auth.currentUser, {
+                    displayName: name,
+                    photoURL: photo
+                })
+                    .then(() => {
+                        navigate(location.state ? location.state : '/')
+                    })
+                    .catch(() => {
+
+                    })
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
     }
 
     return (
@@ -15,9 +40,6 @@ const Register = () => {
             <section className="bg-white dark:bg-gray-900">
                 <div className="container flex items-center justify-center mx-auto">
                     <form onSubmit={handleSignUpForm} className="w-full max-w-md">
-                        <div className="flex justify-center mx-auto">
-                            <img className="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt="" />
-                        </div>
                         <div className="flex items-center justify-center mt-6">
                             <a href="#" className="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400 dark:text-white">
                                 sign up
